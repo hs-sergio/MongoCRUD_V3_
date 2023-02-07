@@ -315,7 +315,7 @@ public class MainController implements Initializable {
                                         modelo = cocheSeleccionado.getModelo(); // Vamos a coger por modelo aunque es un poco peligroso, deberíamos poner un id.
 
                                         // Hacemos el filtro  y borramos el elemento de la coleccion
-                                        Bson filter = Filters.eq("modelo", modelo);
+                                        Bson filter = Filters.eq("modelo", modelo );
                                         coleccion.deleteOne(filter);
                                         System.out.println("ELIMINADO EL COCHE (MODELO: "+modelo+")");
 
