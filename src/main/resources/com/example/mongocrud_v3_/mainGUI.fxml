@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="777.0" prefWidth="1289.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mongocrud_v3_.MainController">
+   <children>
+      <TableView fx:id="tableCoches" layoutX="92.0" layoutY="237.0" prefHeight="474.0" prefWidth="1105.0">
+        <columns>
+          <TableColumn fx:id="colMarca" prefWidth="200.0" text="Marca" />
+          <TableColumn fx:id="colModelo" prefWidth="200.0" text="Modelo" />
+            <TableColumn fx:id="colCarroceria" prefWidth="200.0" text="Carroceria" />
+            <TableColumn fx:id="colPrecio" prefWidth="200.0" text="Precio" />
+            <TableColumn fx:id="colAnio" prefWidth="200.0" text="Anio" />
+            <TableColumn fx:id="colEdit" prefWidth="104.0" text="EDIT" />
+        </columns>
+      </TableView>
+      <Pane layoutY="122.0" prefHeight="14.0" prefWidth="1289.0" style="-fx-background-color: grey;" />
+      <Label layoutX="92.0" layoutY="42.0" prefHeight="63.0" prefWidth="268.0" text="Coches CRUD">
+         <font>
+            <Font name="Consolas Bold" size="43.0" />
+         </font>
+      </Label>
+      <HBox layoutX="92.0" layoutY="147.0" prefHeight="73.0" prefWidth="301.0">
+         <children>
+            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#getAddView" prefHeight="73.0" prefWidth="100.0" text="Add">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnRefresh" mnemonicParsing="false" onAction="#refreshTable" prefHeight="73.0" prefWidth="100.0" text="Refresh">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#print" prefHeight="84.0" prefWidth="100.0" text="Print">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
