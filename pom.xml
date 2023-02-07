@@ -43,6 +43,11 @@
             <artifactId>mongo-java-driver</artifactId>
             <version>3.12.11</version>
         </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>fontawesome</artifactId>
+            <version>5.6.3</version>
+        </dependency>
     </dependencies>
 
     <build>

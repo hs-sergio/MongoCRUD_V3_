@@ -53,11 +53,6 @@ public class AddElementController implements Initializable {
     @FXML
     private void Anadir(ActionEvent event) {
         try {
-            // Creamos la conexión con mongo
-            MongoClient coches = new MongoClient(Host, Port);
-            MongoDatabase mongodatabase = coches.getDatabase("miBBDD");
-            // Coger la coleccion
-            MongoCollection coleccion = mongodatabase.getCollection("Coches");
 
             String marca = txtMarca.getText();
             String modelo = txtModelo.getText();
@@ -65,9 +60,6 @@ public class AddElementController implements Initializable {
             int precio = Integer.parseInt(txtPrecio.getText());
             int anio = Integer.parseInt(txtAnio.getText());
 
-            // Recoger los datos del formulario y meterlos en un objeto tipo Document
-            Document doc = new Document("marca", marca).append("modelo", modelo).append("carroceria", carroceria)
-                    .append("precio", precio).append("anio", anio);
 
             // Guardamos el documento
             // Lo que hemos hecho ha sido un documento nuevo como lo de emp1 = {empNo: 5432, apellido: "sala"}...
@@ -77,8 +69,6 @@ public class AddElementController implements Initializable {
             setTextField(marca, modelo, carroceria, precio, anio);
             Clear();
 
-
-            coleccion.insertOne(doc);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,22 +89,23 @@ public class AddElementController implements Initializable {
     }
 
 
-    private void updateSelectedElement(){
+    private void updateSelectedElement() {
         MongoClient coches = new MongoClient(Host, Port);
         MongoDatabase mongodatabase = coches.getDatabase("miBBDD");
         // Coger la coleccion
         MongoCollection coleccion = mongodatabase.getCollection("Coches");
-        if(update == false){
+
+        String marca = txtMarca.getText();
+        String modelo = txtModelo.getText();
+        String carroceria = txtCarroceria.getText();
+        int precio = Integer.parseInt(txtPrecio.getText());
+        int anio = Integer.parseInt(txtAnio.getText());
+
+        if (update == false) {
             // Si update es falso, es decir que es un elemento nuevo. Pues lo insertamos
             try {
                 // Creamos la conexión con mongo
 
-
-                String marca = txtMarca.getText();
-                String modelo = txtModelo.getText();
-                String carroceria = txtCarroceria.getText();
-                int precio = Integer.parseInt(txtPrecio.getText());
-                int anio = Integer.parseInt(txtAnio.getText());
 
                 // Recoger los datos del formulario y meterlos en un objeto tipo Document
                 Document doc = new Document("marca", marca).append("modelo", modelo).append("carroceria", carroceria)
@@ -131,24 +122,32 @@ public class AddElementController implements Initializable {
             }
 
 
-        }else{
-            // Pero si update es true entonces el registro ya existe y solamente tenemos que cambiar los valores pero manteniendo el id, que nisiquiera se puede cambiar
-            // Hacemos el filtro  y borramos el elemento de la coleccion
-            Bson filter = Filters.eq("modelo", txtModelo.getText());
-            Document doc = new Document("marca", txtMarca).append("modelo", txtModelo).append("carroceria", txtCarroceria)
-                    .append("precio", txtPrecio).append("anio", txtAnio);
+        } else {
 
-            coleccion.updateOne(filter, doc);
+            try {
+                // Pero si update es true entonces el registro ya existe y solamente tenemos que cambiar los valores pero manteniendo el id, que nisiquiera se puede cambiar
+                // Hacemos el filtro  y borramos el elemento de la coleccion
+                Bson filter = Filters.eq("modelo", txtModelo.getText());
+                // Crear un objeto de actualización para establecer el nuevo valor del campo "name"
+                Bson update = new Document("$set", new Document("marca", marca).append("modelo", modelo).append("carroceria", carroceria)
+                        .append("precio", precio).append("anio", anio));
+
+                coleccion.updateOne(filter, update);
+            } catch (Exception e) {
+                System.out.println("ERROR: ERROR MODIFICANDO EL REGISTRO");
+                e.printStackTrace();
+            }
+
 
         }
     }
 
-    void setUpdate(boolean b){
+    void setUpdate(boolean b) {
         this.update = b;
     }
 
     // Metodo para rellenar los campos con lo que nos pasen de la tabla
-    void setTextField(String marca, String modelo, String carroceria, int precio, int anio){
+    void setTextField(String marca, String modelo, String carroceria, int precio, int anio) {
         txtMarca.setText(marca);
         txtModelo.setText(modelo);
         txtCarroceria.setText(carroceria);

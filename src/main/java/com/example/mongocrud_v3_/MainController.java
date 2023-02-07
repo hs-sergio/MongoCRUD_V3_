@@ -16,6 +16,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -75,7 +77,16 @@ public class MainController implements Initializable {
     @FXML
     private Button btnAnadir;
     @FXML
+    private Button btnRefresh;
+    @FXML
     private Button btnModificar;
+
+    @FXML
+    private ImageView imgRefresh;
+    @FXML
+    private ImageView imgAdd;
+
+
 
 
     private String marca;
@@ -108,10 +119,12 @@ public class MainController implements Initializable {
     MongoCursor<Document> cursor = coleccion.find().iterator();
     private StringConverter<java.lang.Integer> Integer; // No recuerdo que era esto, esta en el otro crud
 
+    // Poner imagenes en los botones
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
 
         tableCoches.setEditable(true);
 
@@ -296,12 +309,12 @@ public class MainController implements Initializable {
                             Button deleteIcon = new Button();
                             Button editIcon = new Button();
 
-                            deleteIcon.setText("BORRAR");
-                            deleteIcon.setStyle("-fx-fill:#ff1744;");
+                            deleteIcon.setGraphic(new ImageView("C:\\Users\\FP\\Desktop\\MongoCRUD_V3_\\src\\main\\java\\images\\trash.png"));
+                            deleteIcon.setStyle("-fx-background-color:#ff1744;");
 
-                            editIcon.setText("EDITAR");
 
-                            editIcon.setStyle("-fx-fill:#00E676;");
+                            editIcon.setGraphic(new ImageView("C:\\Users\\FP\\Desktop\\MongoCRUD_V3_\\src\\main\\java\\images\\edit.png"));
+                            editIcon.setStyle("-fx-background-color:#00E676;");
 
                             deleteIcon.setOnMouseClicked((MouseEvent event) -> {
 
