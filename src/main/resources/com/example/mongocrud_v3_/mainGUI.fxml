@@ -2,41 +2,57 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="777.0" prefWidth="1289.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mongocrud_v3_.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="777.0" prefWidth="1289.0" style="-fx-background-radius: 10; -fx-background-color: #E8E7D5;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mongocrud_v3_.MainController">
    <children>
-      <TableView fx:id="tableCoches" layoutX="92.0" layoutY="237.0" prefHeight="474.0" prefWidth="1105.0">
+      <Pane prefHeight="123.0" prefWidth="1289.0" style="-fx-background-color: #3FA037;" />
+      <TableView fx:id="tableCoches" layoutX="59.0" layoutY="245.0" prefHeight="474.0" prefWidth="1161.0" stylesheets="@TableStyle.css">
         <columns>
           <TableColumn fx:id="colMarca" prefWidth="200.0" text="Marca" />
           <TableColumn fx:id="colModelo" prefWidth="200.0" text="Modelo" />
             <TableColumn fx:id="colCarroceria" prefWidth="200.0" text="Carroceria" />
             <TableColumn fx:id="colPrecio" prefWidth="200.0" text="Precio" />
             <TableColumn fx:id="colAnio" prefWidth="200.0" text="Anio" />
-            <TableColumn fx:id="colEdit" prefWidth="104.0" text="EDIT" />
+            <TableColumn fx:id="colEdit" prefWidth="104.0" />
         </columns>
       </TableView>
-      <Pane layoutY="122.0" prefHeight="15.0" prefWidth="1289.0" style="-fx-background-color: grey;" />
-      <Label layoutX="26.0" layoutY="51.0" prefHeight="63.0" prefWidth="268.0" text="Coches CRUD">
+      <Pane layoutY="122.0" prefHeight="15.0" prefWidth="1289.0" style="-fx-background-color: #C1BEBC;" />
+      <Label layoutX="26.0" layoutY="51.0" prefHeight="63.0" prefWidth="613.0" text="MongoDB Coches" textFill="WHITE">
          <font>
-            <Font name="Consolas Bold" size="43.0" />
+            <Font name="Roboto Thin" size="45.0" />
          </font>
       </Label>
       <HBox layoutX="92.0" layoutY="147.0" prefHeight="73.0" prefWidth="301.0">
          <children>
-            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#getAddView" prefHeight="73.0" prefWidth="100.0" style="-fx-background-color: #00E676; -fx-background-radius: 15;" text="Add">
+            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#getAddView" prefHeight="73.0" prefWidth="100.0" style="-fx-background-color: #00E676; -fx-background-radius: 15;">
                <font>
                   <Font size="21.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/gilni/Desktop/Interfaces_JavaFX/MongoCRUD_V3_/src/main/java/images/user-add.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button fx:id="btnRefresh" mnemonicParsing="false" onAction="#refreshTable" prefHeight="73.0" prefWidth="100.0" style="-fx-background-color: #eeef20; -fx-background-radius: 15;" text="Actu">
+            <Button fx:id="btnRefresh" mnemonicParsing="false" onAction="#refreshTable" prefHeight="73.0" prefWidth="100.0" style="-fx-background-color: #FFD503; -fx-background-radius: 15;">
                <font>
                   <Font size="20.0" />
                </font>
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/Users/gilni/Desktop/Interfaces_JavaFX/MongoCRUD_V3_/src/main/java/images/refresh.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
       </HBox>

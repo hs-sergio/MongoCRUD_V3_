@@ -2,6 +2,7 @@ package com.example.mongocrud_v3_;
 
 
 import com.mongodb.client.model.Filters;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -44,11 +45,7 @@ import org.bson.conversions.Bson;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
-import java.util.Collections;
+import java.util.*;
 
 public class MainController implements Initializable {
 
@@ -94,6 +91,9 @@ public class MainController implements Initializable {
     private String carroceria;
     private int precio;
     private int anio;
+
+    // CREAMOS LA ALERTA
+    Alert a = new Alert(Alert.AlertType.NONE);
 
 
     // Declaramos host y port para la conexión
@@ -309,11 +309,11 @@ public class MainController implements Initializable {
                             Button deleteIcon = new Button();
                             Button editIcon = new Button();
 
-                            deleteIcon.setGraphic(new ImageView("C:\\Users\\FP\\Desktop\\MongoCRUD_V3_\\src\\main\\java\\images\\trash.png"));
+                            deleteIcon.setGraphic(new ImageView("C:\\Users\\gilni\\Desktop\\Interfaces_JavaFX\\MongoCRUD_V3_\\src\\main\\java\\images\\trash.png"));
                             deleteIcon.setStyle("-fx-background-color:#ff1744;");
 
 
-                            editIcon.setGraphic(new ImageView("C:\\Users\\FP\\Desktop\\MongoCRUD_V3_\\src\\main\\java\\images\\edit.png"));
+                            editIcon.setGraphic(new ImageView("C:\\Users\\gilni\\Desktop\\Interfaces_JavaFX\\MongoCRUD_V3_\\src\\main\\java\\images\\edit.png"));
                             editIcon.setStyle("-fx-background-color:#00E676;");
 
                             deleteIcon.setOnMouseClicked((MouseEvent event) -> {
@@ -322,6 +322,11 @@ public class MainController implements Initializable {
                                     Coches cocheSeleccionado = tableCoches.getSelectionModel().getSelectedItem();
 
                                     if(cocheSeleccionado == null){
+
+                                        a.setAlertType(Alert.AlertType.ERROR);
+                                        a.setTitle("ERROR.");
+                                        a.setContentText("Tienes que seleccinar un elemento a borrar!");
+                                        a.show();
                                         System.out.println("ERROR: NO HAY NINGÚN COCHE SELECCIONADO!!");
                                     }else{
                                         // Recogemos los datos de la fila seleccionada. Deberiamos recoger por id, o cualquier campo que no se repita.
@@ -329,8 +334,21 @@ public class MainController implements Initializable {
 
                                         // Hacemos el filtro  y borramos el elemento de la coleccion
                                         Bson filter = Filters.eq("modelo", modelo );
-                                        coleccion.deleteOne(filter);
-                                        System.out.println("ELIMINADO EL COCHE (MODELO: "+modelo+")");
+
+                                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                        a.setTitle("CONFIRMACIÓN BORRADO");
+                                        a.setContentText("Estas seguro que quieres borrar este modelo: "+modelo+" ?");
+                                        Optional<ButtonType> a = alert.showAndWait();
+
+                                        if(a.get() == ButtonType.OK){
+                                            coleccion.deleteOne(filter); // Si pulsas que si borras
+                                            System.out.println("ELIMINADO EL COCHE (MODELO: "+modelo+")");
+
+                                        }else{
+                                            System.out.println("No has borrado nada no pasa nada");
+                                        }
+
+
 
                                         refreshTable(); // Para actualizar la tabla con el valor borrado
                                     }
