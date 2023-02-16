@@ -309,11 +309,10 @@ public class MainController implements Initializable {
                             Button deleteIcon = new Button();
                             Button editIcon = new Button();
 
-                            deleteIcon.setGraphic(new ImageView("C:\\Users\\gilni\\Desktop\\Interfaces_JavaFX\\MongoCRUD_V3_\\src\\main\\java\\images\\trash.png"));
+                            deleteIcon.setGraphic(new ImageView("C:\\Users\\gilni\\Desktop\\CLASE\\Interfaces_JavaFX\\MongoCRUD_V3_\\src\\main\\java\\images\\trash.png"));
                             deleteIcon.setStyle("-fx-background-color:#ff1744;");
 
-
-                            editIcon.setGraphic(new ImageView("C:\\Users\\gilni\\Desktop\\Interfaces_JavaFX\\MongoCRUD_V3_\\src\\main\\java\\images\\edit.png"));
+                            editIcon.setGraphic(new ImageView("C:\\Users\\gilni\\Desktop\\CLASE\\Interfaces_JavaFX\\MongoCRUD_V3_\\src\\main\\java\\images\\edit.png"));
                             editIcon.setStyle("-fx-background-color:#00E676;");
 
                             deleteIcon.setOnMouseClicked((MouseEvent event) -> {
